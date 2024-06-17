@@ -1,0 +1,7 @@
+{
+    "port": 9000,
+    "database": {
+      "connectionString": "postgres://newuser:root@localhost:5432/postgres"
+    }
+}
+  
