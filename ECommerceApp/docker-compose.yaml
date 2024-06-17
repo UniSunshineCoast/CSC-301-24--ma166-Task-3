@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: newuser
+      POSTGRES_PASSWORD: root
+    volumes:
+      - ./init-db/init.sql:/docker-entrypoint-initdb.d/init.sql # Mounts the SQL initialization script into the container
+    ports:
+      - "7000:5432" # Maps port 7000 on the host to port 5432 in the container
+
+  my-server:
+    build: ../server/ # Builds the 'my-server' service from the Dockerfile in the '../server/' directory
+    ports:
+      - "9000:9000"
+    depends_on:
+      - postgres # Ensures 'postgres' service is started before 'my-server'
+
+  my-app:
+    build: . # Builds the 'my-app' service from the Dockerfile in the current directory
+    ports:
+      - "4000:4000"
+    depends_on:
+      - my-server # Ensures 'my-server' service is started before 'my-app'

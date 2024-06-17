@@ -1,0 +1,49 @@
+name: Deploy  
+
+on:
+  push:
+    branches:
+      - main  # Trigger the workflow on pushes to the 'main' branch
+
+jobs:
+  build:
+    name: Build 
+    runs-on: ubuntu-latest  # Use the latest version of Ubuntu as the runner
+
+    steps:
+      - name: Checkout repo  # Step to checkout the repository code
+        uses: actions/checkout@v3  # Use the checkout action, version 3
+
+      - name: Setup Node  # Step to set up Node.js
+        uses: actions/setup-node@v3  # Use the setup-node action, version 3
+
+      - name: Install dependencies  # Step to install project dependencies
+        run: npm install  # Run the npm install command
+
+      - name: Build project  # Step to build the project
+        run: npm run build  # Run the npm run build command
+
+      - name: Upload production-ready build files  # Step to upload the build artifacts
+        uses: actions/upload-artifact@v3  # Use the upload-artifact action, version 3
+        with:
+          name: production-files  # Name of the artifact
+          path: ./dist  # Path to the build files to be uploaded
+
+  deploy:
+    name: Deploy 
+    needs: build  # Indicates that this job depends on the successful completion of the build job
+    runs-on: ubuntu-latest  # Use the latest version of Ubuntu as the runner
+    if: github.ref == 'refs/heads/main'  # Conditional to run this job only on the 'main' branch
+
+    steps:
+      - name: Download artifact  # Step to download the build artifacts
+        uses: actions/download-artifact@v3  # Use the download-artifact action, version 3
+        with:
+          name: production-files  # Name of the artifact to download
+          path: ./dist  # Path to download the artifact to
+
+      - name: Deploy to GitHub Pages  # Step to deploy the build files to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3  # Use the GitHub Pages deployment action, version 3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}  # Use the GitHub token from secrets
+          publish_dir: ./dist  # Directory of the files to publish

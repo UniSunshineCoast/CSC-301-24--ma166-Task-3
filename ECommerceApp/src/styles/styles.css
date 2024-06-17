@@ -1,0 +1,124 @@
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  @media (max-width: 768px) {
+    #root {
+      padding: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    #root {
+      padding: 0.5rem;
+    }
+  }
+  
+  .home {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .hero {
+    background-color: #f2f2f218;
+    padding: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .hero-content {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .cta-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .cta-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .featured-products {
+    margin-bottom: 2rem;
+  }
+  
+  .product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  
+  .product-card {
+    border: 1px solid #ddd;
+    padding: 1rem;
+  }
+  
+  .product-card img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 1rem;
+  }
+  
+  .product-details h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .product-details p {
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  .promotions {
+    background-color: #ffffff00;
+    padding: 2rem;
+  }
+  
+  .promotion-banners {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+  
+  .promotion-banner {
+    flex: 1;
+    border: 1px solid #dddddd33;
+    padding: 1rem;
+  }
+  
+  .promotion-banner img {
+    width: 30vw;
+    height: auto;
+    margin-bottom: 1rem;
+  }
+  
+  .promotion-details h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .promotion-details p {
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  .promotion-details a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .promotion-details a:hover {
+    text-decoration: underline;
+  }
